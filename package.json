@@ -1,0 +1,59 @@
+{
+  "name": "move-fitness-health",
+  "version": "1.0.1",
+  "description": "move fitness and health",
+  "main": "server.js",
+  "dependencies": {
+    "bcrypt": "^1.0.1",
+    "body-parser": "^1.15.2",
+    "cloudinary": "1.7.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^1.3.0",
+    "cookie-parser": "1.4.3",
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "gridfs": "^1.0.0",
+    "gridfs-stream": "^1.1.1",
+    "mongodb": "^2.2.16",
+    "mongoose": "^4.7.2",
+    "morgan": "^1.7.0",
+    "node-tweet-stream": "2.0.1",
+    "passport": "0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "1.0.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "1.0.4",
+    "passport.socketio": "3.7.0",
+    "shortid": "2.2.6",
+    "socket.io": "1.7.3",
+    "twit": "2.2.5",
+    "uid2": "0.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoxMarshall/move-fitness.git"
+  },
+  "keywords": [
+    "move",
+    "fitness",
+    "health",
+    "passive",
+    "exercise"
+  ],
+  "author": "Ibia David",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BoxMarshall/move-fitness/issues"
+  },
+  "homepage": "https://github.com/BoxMarshall/move-fitness#readme",
+  "engines": {
+    "node": "4.2.6",
+    "npm": "3.5.2"
+  }
+}
