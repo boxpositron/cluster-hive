@@ -5,7 +5,7 @@ module.exports = function(app, passport, controller) {
         res.redirect("/hive")
     });
 
-    app.get('/hive', isLoggedIn, function(req, res) {
+    app.get('/hive', function(req, res) {
         res.render("hive")
     });
 
