@@ -2,7 +2,7 @@
 module.exports = function(app, passport, controller) {
 
     app.get('/', function(req, res) {
-        res.redirect("/hive")
+        res.redirect("/login")
     });
 
     app.get('/hive', function(req, res) {

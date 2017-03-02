@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
     canvas.width = width;
     canvas.height = height;
 
+
     // register mouse event handlers
     canvas.onmousedown = function(e) {
         mouse.click = true;
@@ -36,8 +37,30 @@ document.addEventListener("DOMContentLoaded", function() {
         mouse.move = true;
     };
 
-
 })
+
+canvas.addEventListener("touchstart", function(e) {
+    mousePos = getTouchPos(canvas, e);
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousedown", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+}, false);
+canvas.addEventListener("touchend", function(e) {
+    var mouseEvent = new MouseEvent("mouseup", {});
+    canvas.dispatchEvent(mouseEvent);
+}, false);
+canvas.addEventListener("touchmove", function(e) {
+    var touch = e.touches[0];
+    var mouseEvent = new MouseEvent("mousemove", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+    });
+    canvas.dispatchEvent(mouseEvent);
+}, false);
+
 
 var socket = io();
 
@@ -64,9 +87,19 @@ function mainLoop() {
         });
         mouse.move = false;
     }
+
     mouse.pos_prev = {
         x: mouse.pos.x,
         y: mouse.pos.y
     };
     setTimeout(mainLoop, 25);
+}
+
+
+function getTouchPos(canvasDom, touchEvent) {
+    var rect = canvasDom.getBoundingClientRect();
+    return {
+        x: touchEvent.touches[0].clientX - rect.left,
+        y: touchEvent.touches[0].clientY - rect.top
+    };
 }
