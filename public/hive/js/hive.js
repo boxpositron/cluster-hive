@@ -1,4 +1,3 @@
-
 var canvas = document.getElementById('drawing');
 var context = canvas.getContext('2d');
 var width = window.innerWidth;
@@ -44,13 +43,8 @@ var socket = io();
 
 $(document).ready(function() {
 
-    socket.on('connect', function() {
-        console.log('Canvas link active');
-    });
-
     // draw line received from server
     socket.on('draw-line', function(data) {
-        console.log("Draw line triggered client")
         var line = data.line;
         context.beginPath();
         context.moveTo(line[0].x * width, line[0].y * height);

@@ -1,7 +1,7 @@
 // database = require('./database-operation.js')
 module.exports = function(app, passport, controller) {
 
-    app.get('/', isLoggedIn, function(req, res) {
+    app.get('/', function(req, res) {
         res.redirect("/hive")
     });
 
@@ -10,11 +10,11 @@ module.exports = function(app, passport, controller) {
     });
 
 
-    app.get("/passport-reset", isLoggedIn, function(req, res) {
+    app.get("/passport-reset", function(req, res) {
         res.render("passport-reset")
     })
 
-    app.get("/about", isLoggedIn, function(req, res) {
+    app.get("/about", function(req, res) {
         res.render("about")
     })
 
@@ -40,8 +40,8 @@ module.exports = function(app, passport, controller) {
     }));
 
 
-    app.use(isLoggedIn, function(req, res, next) {
-        res.redirect("/hive")
+    app.use(function(req, res, next) {
+        res.redirect("/login")
     });
 
     function isLoggedIn(req, res, next) {

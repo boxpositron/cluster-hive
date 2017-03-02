@@ -2,7 +2,6 @@ module.exports = function(io) {
     var line_history = [];
 
     io.on('connect', function (socket) {
-    console.log("client side connected")
 
        // first send the history to the new client
        for (var i in line_history) {
@@ -14,7 +13,6 @@ module.exports = function(io) {
           // add received line to history
           line_history.push(data.line);
           // send line to all clients
-          console.log("Draw line tirggered server")
           io.emit('draw-line', { line: data.line });
        });
     });

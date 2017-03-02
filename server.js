@@ -12,26 +12,7 @@ var config = require("./config/database")
 var port = process.env.PORT || 8080
 var app = express()
 
-var sessionstore = new MongoDBStore({
-    url: config.database,
-    collection: "mySessions"
-})
-
-sessionstore.on('error', function(error) {
-    assert.ifError(error)
-    assert.ok(false)
-})
 app.use(express.static(__dirname + '/public'))
-
-app.use(session({
-    secret: config.cookiesecret,
-    cookie: {
-        maxAge: 604800000
-    },
-    store: sessionstore,
-    resave: true,
-    saveUninitialized: true
-}))
 
 
 app.use(bodyParser.urlencoded({
@@ -53,30 +34,7 @@ var io = require('socket.io').listen(server)
 
 require("./app/virtual-classroom")(io)
 
-cookieParser = require('cookie-parser')
-cookieParser({
-    secret: config.cookiesecret
-})
-
-io.set("authorization", passportSocketIo.authorize({
-    cookieParser: cookieParser,
-    secret: config.cookiesecret,
-    store: sessionstore,
-    success: onAuthorizeSuccess
-}))
-
-require("./config/passport")(passport)
-
-//
-// mongoose.connect(config.database, function(err) {
-//     if (err) return console.log(err)
-// })
 server.listen(port, function() {
     console.log('Cluster Hive is running at http://localhost:' + port)
 
 })
-
-function onAuthorizeSuccess(data, accept) {
-    console.log('successful connection to socket.io');
-    accept(null, true);
-}
