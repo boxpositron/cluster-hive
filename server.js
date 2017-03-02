@@ -1,6 +1,6 @@
-var http =  require('http')
+var http = require('http')
 var express = require('express')
-var session  = require("express-session")
+var session = require("express-session")
 var MongoDBStore = require("connect-mongodb-session")(session)
 var bodyParser = require("body-parser")
 var mongoose = require("mongoose")
@@ -13,8 +13,8 @@ var port = process.env.PORT || 8080
 var app = express()
 
 var sessionstore = new MongoDBStore({
-  url: config.database,
-  collection: "mySessions"
+    url: config.database,
+    collection: "mySessions"
 })
 
 sessionstore.on('error', function(error) {
@@ -45,11 +45,13 @@ app.use(flash())
 
 app.set('view engine', 'ejs')
 
-require("./app/routes.js")(app,passport)
+require("./app/routes.js")(app, passport)
 
 
 var server = http.createServer(app)
 var io = require('socket.io').listen(server)
+
+require("./app/virtual-classroom")(io)
 
 cookieParser = require('cookie-parser')
 cookieParser({
@@ -65,16 +67,16 @@ io.set("authorization", passportSocketIo.authorize({
 
 require("./config/passport")(passport)
 
+//
+// mongoose.connect(config.database, function(err) {
+//     if (err) return console.log(err)
+// })
+server.listen(port, function() {
+    console.log('Cluster Hive is running at http://localhost:' + port)
 
-mongoose.connect(config.database, function(err) {
-    if (err) return console.log(err)
-    server.listen(port, function() {
-        console.log('Cluster Hive is running at http://localhost:' + port)
-
-    })
 })
 
-function onAuthorizeSuccess(data,accept){
-  console.log('successful connection to socket.io');
-  accept(null,true);
+function onAuthorizeSuccess(data, accept) {
+    console.log('successful connection to socket.io');
+    accept(null, true);
 }

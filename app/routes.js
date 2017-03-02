@@ -1,4 +1,4 @@
-database = require('./database-operation.js')
+// database = require('./database-operation.js')
 module.exports = function(app, passport, controller) {
 
     app.get('/', isLoggedIn, function(req, res) {
