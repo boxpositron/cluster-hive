@@ -1,3 +1,6 @@
+User = require("./models/user.js")
+Profile = require("./models/profile.js")
+
 module.exports = function() {
 
     createProfile = function(credentials) {
