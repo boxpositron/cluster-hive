@@ -4,7 +4,7 @@
   "description": "move fitness and health",
   "main": "server.js",
   "dependencies": {
-    "bcrypt": "^1.0.1",
+    "bcrypt": "^2.0.0",
     "body-parser": "^1.15.2",
     "cloudinary": "1.7.0",
     "connect-flash": "^0.1.1",
